@@ -44,6 +44,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = ["nvidia"];
 
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
@@ -93,6 +94,21 @@
     ];
   };
 
+hardware = {
+	opengl = {
+		enable = true;
+		driSupport = true;
+		driSupport32Bit = true;
+	};
+
+	nvidia = {
+		modesetting.enable = true;
+		powerManagement.enable = true;
+		open = true;
+		nvidiaSettings = true;
+	};
+};
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -108,6 +124,10 @@
 	git
 	git-crypt
 	gnupg
+	tor-browser-bundle-bin
+	mpv
+	wine
+	ffmpeg
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
