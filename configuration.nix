@@ -103,11 +103,14 @@ hardware = {
 
 	nvidia = {
 		modesetting.enable = true;
-		powerManagement.enable = true;
+		powerManagement.enable = false;
 		open = true;
-		nvidiaSettings = true;
+		nvidiaSettings = false;
+		powerManagement.finegrained = false;
 	};
 };
+
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -128,6 +131,10 @@ hardware = {
 	mpv
 	wine
 	ffmpeg
+	anki-bin
+	obs-studio
+	obsidian
+	unrar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -157,6 +164,9 @@ services = {
 		enable = true;
 	};
 };
+
+#programs.hyprland.enable = true;
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
